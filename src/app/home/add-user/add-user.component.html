@@ -1,0 +1,66 @@
+<!--form opening tag (using reactive forms)-->
+<form class="columnFlex" [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <h2 class="title">Add User</h2>
+    <!--first name label & input field-->
+    <div class="field columnFlex">
+        <label for="firstName">First Name:</label>
+        <input type="text" [ngClass]="{'is-invalid':isInValid('firstName')}" id="firstName" formControlName="firstName"
+            minlength="3" maxlength="20" />
+
+        <!--show alert if the first name is empty-->
+        <p *ngIf="addUserForm.get('firstName')?.hasError('required') && isInValid('firstName')">
+            &#x26A0; Required
+        </p>
+        <!--show alert if the first name is not in between 3 and 20 characters-->
+        <p
+            *ngIf="addUserForm.get('firstName')?.hasError('minlength') || addUserForm.get('firstName')?.hasError('maxlength')">
+            &#x26A0; Must be between 3 and 20 characters.
+        </p>
+
+        <!--show alert if it does nt have alphabets-->
+        <p *ngIf="addUserForm.get('firstName')?.hasError('alphabetOnly') && isInValid('firstName')" class="error-message">First Name should only contain alphabets</p>
+    </div>
+
+    <!--last name label & input field-->
+    <div class="field columnFlex">
+        <label for="lastName">Last Name:</label>
+        <input type="text" [ngClass]="{'is-invalid':isInValid('lastName')}" id="lastName" formControlName="lastName"
+            minlength="3" maxlength="20" />
+
+        <!--show alert if the last name is empty-->
+        <p *ngIf="addUserForm.get('lastName')?.hasError('required') && isInValid('lastName')">
+            &#x26A0; Required
+        </p>
+        <!--show alert if the last name is not in between 3 and 20 characters-->
+        <p
+            *ngIf="addUserForm.get('lastName')?.hasError('minlength') || addUserForm.get('lastName')?.hasError('maxlength')">
+            &#x26A0; Last Name must be between 3 and 20 characters.
+        </p>
+
+         <!--show alert if it does not have alphabets-->
+         <p *ngIf="addUserForm.get('lastName')?.hasError('alphabetOnly') && isInValid('firstName')" class="error-message">First Name should only contain alphabets</p>
+    </div>
+
+    <div class="field columnFlex">
+        <!--email label & input field-->
+        <label for="email">Email:</label>
+        <input [ngClass]="{'is-invalid':isInValid('email')}" type="email" id="email" formControlName="email" />
+
+        <!--show alert if email field is empty-->
+        <p *ngIf="addUserForm.get('email')?.hasError('required') && isInValid('email')">
+            &#x26A0; Required
+    </p>
+        <!--show alert if entered email address is not valid-->
+        <p *ngIf="addUserForm.get('email')?.hasError('email')">
+            &#x26A0; Enter a valid email address.
+        </p>
+    </div>
+
+    <!--form submission button-->
+    <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
+
+    <!--success form submission msg-->
+    <p class="successMsg" *ngIf="showSuccessMsg">User successfully added.</p>
+
+</form>
+<!--form closing tag-->

@@ -1,0 +1,31 @@
+table { 
+    max-width: 500px;
+    min-width: 400px;  
+    border-collapse: collapse;
+}
+.rowFlex { 
+    gap: 20px;
+    max-width: 500px;
+    min-width: 400px;
+    flex-grow: 1;
+    .heading{ 
+        color: #131b24;
+        font-size: 1rem;
+        margin: 0px;
+        text-transform: capitalize;
+        padding-right: 26px;
+    }
+}
+th{ 
+    text-align: left;
+}
+//column gap styling
+.columnFlex { 
+    gap: 10px;
+}//Mobile Styling
+@media screen and (max-width: 767px) { 
+    .rowFlex{ 
+        min-width: 300px;
+        max-width: 300px;
+    }
+  }

@@ -1,0 +1,28 @@
+<div class="">
+  <h2>Users List</h2>
+  <!--usinf ngFor directive to display data from an array-->
+  <!-- <ul>
+      <li *ngFor="let user of userList">
+        {{ user.firstName }} {{ user.lastName }}
+      </li>
+    </ul> -->
+  <ng-container class="columnFlex">
+    <table>
+      <thead>
+        <tr class="rowFlex">
+          <th class="heading">First Name</th>
+          <th class="heading">Last Name</th>
+          <th class="heading">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="userList.length === 0">No users added</tr>
+        <tr *ngFor="let user of userList" class="rowFlex">
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>
